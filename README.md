@@ -74,6 +74,6 @@ Here will be stored files for this tablet
 >```bash
 >sudo reboot
 >```
->4.6 Do check touchscreen on logon screen
+>4.6 Do check touchscreen on logon screen<br>
 >4.7 Do check "windows" button after logging in to system
 </small>
