@@ -1,0 +1,86 @@
+# This file is part of systemd.
+#
+# The lookup keys are composed in:
+#   60-sensor.rules
+#
+# Match string formats:
+# sensor:<label>:modalias:<parent modalias pattern>:dmi:<dmi pattern>
+# sensor:modalias:<parent modalias pattern>:dmi:<dmi pattern>
+#
+# The device modalias can be seen in the `modalias` file of the sensor parent,
+# and the device label can be seen in the `label` file of the sensor,
+# for example:
+#   cat /sys/`udevadm info -q path -n /dev/iio:device0`/label
+#   cat /sys/`udevadm info -q path -n /dev/iio:device0`/../modalias
+#
+# The full DMI string of the running machine can be read from
+#   /sys/class/dmi/id/modalias
+# That requires a kernel built with CONFIG_DMIID set, which is common.
+# The full DMI string is not needed here and the meaning of individual parts
+# can be seen in the source of the DMIID kernel module
+#   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/firmware/dmi-id.c
+#
+# To add local entries, create a new file
+#   /etc/udev/hwdb.d/61-sensor-local.hwdb
+# and add your rules there. To load the new rules execute (as root):
+#   systemd-hwdb update
+#   udevadm trigger -v -p DEVNAME=/dev/iio:deviceXXX
+# where /dev/iio:deviceXXX is the device in question.
+#
+# If your changes are generally applicable, preferably send them as a pull
+# request to
+#   https://github.com/systemd/systemd
+# or create a bug report on https://github.com/systemd/systemd/issues and
+# include your new rules, a description of the device, and the output of
+#   udevadm info --export-db
+#
+# For hwdb format and systemd behavior:
+#   https://www.freedesktop.org/software/systemd/man/hwdb.html
+#
+# Allowed properties are:
+#    ACCEL_MOUNT_MATRIX=<matrix>
+#    PROXIMITY_NEAR_LEVEL=<value>
+#
+# where <matrix> is a mount-matrix in the format specified in the IIO
+# subsystem[1]. The default, when unset, is equivalent to:
+#   ACCEL_MOUNT_MATRIX=1, 0, 0; 0, 1, 0; 0, 0, 1
+# eg. the identity matrix,
+# and <value> is an integer value above or equal to which an object is
+# considered close by a proximity sensor:
+#   PROXIMITY_NEAR_LEVEL=100
+#
+# [1]: https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=dfc57732ad38f93ae6232a3b4e64fd077383a0f1
+#
+# Note for devices where the display (LCD panel) is mounted non upright
+# in the device's casing, e.g. mounted upside-down or 90 degree rotated,
+# the ACCEL_MOUNT_MATRIX should be such that the x and y axis matches the
+# x and y axis of the display, not those of the casing, so that desktop
+# environments using the accelerometer data for rotation will e.g.
+# automatically flip their output for an upside-down display when the device
+# is held upright.
+#
+#    ACCEL_LOCATION=<location>
+#
+# where <location> is the location of the sensor. This value could be 'base'
+# or 'display'. The default, when unset, is equivalent to:
+#    ACCEL_LOCATION=display
+#
+# A note about setting ACCEL_MOUNT_MATRIX for ACCEL_LOCATION=base sensors,
+# on 360 degree hinges style 2-in-1s with 2 sensors (one in the display and
+# 1 in the base). Userspace will use both sensors to calculate the angle between
+# the 2 halves and the angle is defined as being 0 when the device is folded
+# as a regular clamshell laptop with its lid closed. This means that the
+# base-accelerometer's mount-matrix must be such, that after applying
+# the mount-matrices to both sensors, the base-accelerometer's readings must
+# be identical to the display-accelerometer's readings (when the lid is
+# closed).
+#
+# Sort by brand, model
+
+#########################################
+# Irbis
+#########################################
+
+#TW48
+sensor:modalias:acpi:BMA250E*:dmi:*:svnIRBIS*:pni101:*
+ ACCEL_MOUNT_MATRIX=0, 1, 0; -1, 0, 0; 0, 0, 1

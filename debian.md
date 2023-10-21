@@ -51,7 +51,7 @@
 >```bash
 >make -j2 bindeb-pkg O=../build
 >```
->__Step 4. Installing new kernel and touchscreen firmware__<br>
+>__Step 4. Installing new kernel__<br>
 >4.1 Do leave from folder with kernel sources
 >```bash
 >cd ..
@@ -60,18 +60,8 @@
 >```bash
 >sudo dpkg -i *.deb
 >```
->4.3 Do create folder in system folder with firmwares
->```bash
->sudo mkdir -p /usr/lib/firmware/silead
->```
->4.4 Do copy __gsl1680-irbis_tw48.fw__ into system folder with firmwares
->```bash
->sudo cp device_irbis_tw48/usr/lib/firmware/silead/gsl1680-irbis_tw48.fw /usr/lib/firmware/silead/
->```
->4.5 Do reboot tablet
+>4.3 Do reboot tablet
 >```bash
 >sudo reboot
 >```
->4.6 Do check touchscreen on logon screen<br>
->4.7 Do check "windows" button after logging in to system
 </small>
