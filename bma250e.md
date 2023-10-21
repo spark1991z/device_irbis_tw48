@@ -1,5 +1,5 @@
 # Fixing screen auto-rotate
-<small>
+<small>For fix screen auto-rotate need execute several actions
 >1. Do copy __60-sensor.hwdb__ into system folder by same path
 >```bash
 >sudo cp device_irbis_tw48/usr/lib/udev/hwdb.d/60-sensor.hwdb /usr/lib/udev/hwdb.d/
