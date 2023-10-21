@@ -48,8 +48,8 @@ Here will be stored files for this tablet
 >```bash
 >make -j$(nproc) tw48_defconfig O=../build
 >```
->3.3 Do launch build new kernel and installation files (*.deb)
->__Attenison:__ On this tablet building will very long (~7-12h), better use 2 cores and turned on charging for building time.
+>3.3 Do launch build new kernel and installation files (*.deb)<br>
+>__Attension:__ On this tablet building will very long (~7-12h), better use 2 cores and turned on charging for building time.
 >```bash
 >make -j2 bindeb-pkg O=../build
 >```
