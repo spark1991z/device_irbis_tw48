@@ -48,14 +48,14 @@ static const struct ts_dmi_data irbis_tw48_data = {
 /* NOTE: Please keep this table sorted alphabetically */
 const struct dmi_system_id touchscreen_dmi_table[] = {
 
-	/* IRBIS TW48 DMI MATCH BEGIN (IRBIS.WI101.JHBNRAA01) */
+	/* IRBIS TW48 DMI MATCH BEGIN */
 	{
 		.driver_data = (void *)&irbis_tw48_data,
 		.matches = {
-			DMI_MATCH(DMI_BIOS_VERSION, "IRBIS.WI101.JHBNRAA01"),
+			DMI_MATCH(DMI_BIOS_VERSION, "_VERSION_"),
 		},
 	},
-	/* IRBIS TW48 DMI MATCH END (IRBIS.WI101.JHBNRAA01) */
+	/* IRBIS TW48 DMI MATCH END */
 	{ }
 };
 
