@@ -2,7 +2,7 @@
 <small>For building kernel need ~30G free space on the drive. Can be used any MicroSD card up to 256G (A2 U3 V30 C10) formatted into ext3/ext4 filesystem (for support symlinks).<br>
 >__Step 1. Downloading sources and installing additional packages__<br>
 >```bash
->sudo apt-get install linux-source-6.1 git bison libncurses5-dev libssl-dev pahole flex dpkg-dev
+>sudo apt-get install linux-source-6.1 git bison libncurses5-dev libssl-dev pahole flex dpkg-dev libelf-dev debhelper-compat
 >```
 >__Step 2. Preparing external storage for build__<br>
 >2.1 Do enter into mounted folder of your external storage (where *** - label of your external storage)
