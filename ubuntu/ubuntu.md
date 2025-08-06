@@ -29,7 +29,7 @@
 >```bash
 >cp /boot/config-$(uname -r) linux-sources-6.1/arch/x86/configs/tw48_defconfig
 >```
->2.6.1 Do modify config -- parameter CONFIG_SYSTEM_TRUSTED_KEYS must be empty
+>2.6.1 Do modify config -- parameters CONFIG_SYSTEM_TRUSTED_KEYS and CONFIG_SYSTEM_REVOCATION_KEYS must be empty
 >```bash
 >nano linux-sources-6.1/arch/x86/configs/tw48_defconfig
 >```
