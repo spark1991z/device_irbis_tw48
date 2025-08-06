@@ -1,8 +1,8 @@
-# Building linux kernel (Ubuntu)
+# Building linux kernel (Ubuntu 25.04)
 <small>For building kernel need ~30G free space on the drive. Can be used any MicroSD card up to 256G (A2 U3 V30 C10) formatted into ext3/ext4 filesystem (for support symlinks).<br>
 >__Step 1. Downloading sources and installing additional packages__<br>
 >```bash
->sudo apt-get install linux-source-6.1 git bison libncurses5-dev libssl-dev pahole flex dpkg-dev libelf-dev debhelper-compat libdw-dev
+>sudo apt-get install linux-source-6.14.0 git bison libncurses5-dev libssl-dev pahole flex dpkg-dev libelf-dev debhelper-compat libdw-dev
 >```
 >__Step 2. Preparing external storage for build__<br>
 >2.1 Do enter into mounted folder of your external storage (where *** - label of your external storage)
@@ -19,32 +19,32 @@
 >```
 >2.4 Do copy downloaded archive with sources
 >```bash
->cp /usr/src/linux-source-6.1.tar.xz .
+>cp /usr/src/linux-source-6.14.0.tar.bz2 .
 >```
 >2.5 Do extract archive with sources
 >```bash
->tar xf linux-sources-6.1.tar.xz
+>tar xf linux-sources-6.14.0.tar.bz2
 >```
 >2.6 Do copy current config file from boot partition into folder of kernel sources into folder with configs for x86 arch.
 >```bash
->cp /boot/config-$(uname -r) linux-sources-6.1/arch/x86/configs/tw48_defconfig
+>cp /boot/config-$(uname -r) linux-sources-6.14.0/arch/x86/configs/tw48_defconfig
 >```
 >2.6.1 Do modify config -- parameters CONFIG_SYSTEM_TRUSTED_KEYS and CONFIG_SYSTEM_REVOCATION_KEYS must be empty
 >```bash
->nano linux-sources-6.1/arch/x86/configs/tw48_defconfig
+>nano linux-sources-6.14.0/arch/x86/configs/tw48_defconfig
 >```
 >2.7 Do patch __touchscreen_dmi.c__ file for your DMI Bios version and replace his in folder with kernel sources by same path
 >```bash
 >bios_ver=$(sudo dmidecode | head -n10 | grep Version | cut -d ' ' -f 2) && echo $bios_ver
 >```
 >```bash
->cat device_irbis_tw48/linux-kernel/drivers/platform/x86/touchscreen_dmi.c | \
->sed -e "s/_VERSION_/"${bios_ver}"/" > linux-source-6.1/drivers/platform/x86/touchscreen_dmi.c
+>cat device_irbis_tw48/ubuntu/linux-kernel/drivers/platform/x86/touchscreen_dmi.c | \
+>sed -e "s/_VERSION_/"${bios_ver}"/" > linux-source-6.14.0/drivers/platform/x86/touchscreen_dmi.c
 >```
 >__Step 3. Building kernel__<br>
 >3.1 Do enter into folder with kernel sources 
 >```bash
->cd linux-source-6.1
+>cd linux-source-6.14.0
 >```
 >3.2 Do create build configuration from copied file
 >```bash
