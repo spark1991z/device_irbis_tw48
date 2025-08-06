@@ -29,6 +29,10 @@
 >```bash
 >cp /boot/config-$(uname -r) linux-sources-6.1/arch/x86/configs/tw48_defconfig
 >```
+>2.6.1 Do modify config -- parameter CONFIG_SYSTEM_TRUSTED_KEYS must be empty
+>```bash
+>nano linux-sources-6.1/arch/x86/configs/tw48_defconfig
+>```
 >2.7 Do patch __touchscreen_dmi.c__ file for your DMI Bios version and replace his in folder with kernel sources by same path
 >```bash
 >bios_ver=$(sudo dmidecode | head -n10 | grep Version | cut -d ' ' -f 2) && echo $bios_ver
