@@ -1,5 +1,5 @@
 # Building linux kernel (Ubuntu 25.04)
-<small>For building kernel need ~30G free space on the drive. Can be used any MicroSD card up to 256G (A2 U3 V30 C10) formatted into ext3/ext4 filesystem (for support symlinks).<br>
+<small>For building kernel need ~30G free space on the drive and ~2G size of swap. Can be used any MicroSD card up to 256G (A2 U3 V30 C10) formatted into ext3/ext4 filesystem (for support symlinks).<br>
 >__Step 1. Downloading sources and installing additional packages__<br>
 >```bash
 >sudo apt-get install linux-source-6.14.0 git bison libncurses5-dev libssl-dev pahole flex dpkg-dev libelf-dev debhelper-compat libdw-dev gawk
