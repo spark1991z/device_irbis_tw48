@@ -13,9 +13,9 @@
 >```bash
 >git clone https://github.com/spark1991z/device_irbis_tw48
 >```
->2.3 Do create folder for binaries files
+>2.3 Do create folder for binaries and temporary files
 >```bash
->mkdir -p build
+>mkdir -p build tmp
 >```
 >2.4 Do copy downloaded archive with sources
 >```bash
@@ -42,6 +42,10 @@
 >sed -e "s/_VERSION_/"${bios_ver}"/" > linux-source-6.14.0/drivers/platform/x86/touchscreen_dmi.c
 >```
 >__Step 3. Building kernel__<br>
+>3.0 Do relocate temporary directory (/tmp) for fix out of memory
+>```bash
+>export TMPDIR=`pwd`/tmp
+>```
 >3.1 Do enter into folder with kernel sources 
 >```bash
 >cd linux-source-6.14.0
@@ -64,7 +68,16 @@
 >```bash
 >sudo dpkg -i *.deb
 >```
->4.3 Do reboot tablet
+>4.3 Do change kernel and initrd files in general menuentry
+>```
+>...
+>menuentry "Ubuntu" ...
+>...
+>linux vmlinuz-6.14.0 ...
+>initrd initrd.img-6.14.0 ...
+>...
+```
+>4.4 Do reboot tablet
 >```bash
 >sudo reboot
 >```
