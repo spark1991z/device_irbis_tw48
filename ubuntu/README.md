@@ -68,8 +68,11 @@
 >```bash
 >sudo dpkg -i *.deb
 >```
->4.3 Do change kernel and initrd files in general menuentry
->```
+>4.3 Do change kernel and initrd files in general menuentry in grub.cfg
+>```bash
+>sudo nano /boot/grub/grub.cfg
+```
+```
 >...
 >menuentry "Ubuntu" ...
 >...
